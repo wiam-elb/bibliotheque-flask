@@ -1,0 +1,44 @@
+{% include 'admin/header.html' %}
+<body>
+<form method="GET" action="{{ url_for('users') }}">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Rechercher par ID, nom ou prénom..."
+        value="{{ request.args.get('search', '') }}"
+    >
+    <button type="submit">Rechercher</button>
+
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>nom</th>
+      <th>prenom</th>
+      <th>email</th>
+      <th>action</th>
+
+    </tr>
+  </thead>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.nom }}</td>
+      <td>{{ user.prenom }}
+      <td>{{ user.email}}</td>
+        <td>
+         <a href="{{ url_for('supprimer_user', id=user.id) }}"
+           onclick="return confirm('Voulez-vous supprimer user?')">
+            <button>Supprimer</button>
+        </a>
+            <a href="{{ url_for('modifier_user', id=user.id) }}">
+            <button>Modifier</button>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+{% include 'admin/footer.html' %}

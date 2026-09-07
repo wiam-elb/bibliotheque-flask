@@ -1,0 +1,75 @@
+{% include 'user/header.html' %}
+<body>
+
+    <h1>Contactez-nous</h1>
+
+    <p>Vous avez une question ou une suggestion ? Envoyez-nous un message.</p>
+
+    <form action="{{ url_for('contact') }}" method="POST">
+
+        <div>
+            <label for="nom">Nom :</label><br>
+            <input
+                type="text"
+                id="nom"
+                name="nom"
+                placeholder="Votre nom"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="email">Email :</label><br>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Votre email"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="sujet">Sujet :</label><br>
+            <input
+                type="text"
+                id="sujet"
+                name="sujet"
+                placeholder="Sujet"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="message">Message :</label><br>
+            <textarea
+                id="message"
+                name="message"
+                rows="6"
+                cols="50"
+                placeholder="Écrivez votre message..."
+                required></textarea>
+        </div>
+
+        <br>
+
+        <button type="submit">Envoyer</button>
+
+    </form>
+
+    <hr>
+
+    <h3>Nos coordonnées</h3>
+
+    <p><strong>Adresse :</strong> Bibliothèque, Zagora</p>
+
+    <p><strong>Téléphone :</strong> +212 6 XX XX XX XX</p>
+
+    <p><strong>Email :</strong> bibliotheque@gmail.com</p>
+
+</body>
+
+{% include 'user/footer.html' %}

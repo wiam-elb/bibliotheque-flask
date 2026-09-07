@@ -1,0 +1,23 @@
+{% include 'admin/header.html' %}
+<body>
+
+    <h1>Dashboard Administrateur</h1>
+
+    <div>
+        <h2>Total des livres</h2>
+        <p>{{ total_livres }}</p>
+    </div>
+
+    <div>
+        <h2>Total des utilisateurs</h2>
+        <p>{{ total_users }}</p>
+    </div>
+
+    <div>
+        <h2>Total des réservations</h2>
+        <p>{{ total_reservations }}</p>
+    </div>
+
+</body>
+
+{% include 'admin/footer.html' %}

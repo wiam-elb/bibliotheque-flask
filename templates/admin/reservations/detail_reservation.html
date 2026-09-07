@@ -1,0 +1,70 @@
+{% include 'admin/header.html' %}
+<body>
+
+    <h2>Détails de la réservation</h2>
+
+    <table>
+
+        <tr>
+            <th>ID Réservation</th>
+            <td>{{ reservation.id }}</td>
+        </tr>
+
+        <tr>
+            <th>Nom</th>
+            <td>{{ reservation.nom }}</td>
+        </tr>
+
+        <tr>
+            <th>Prénom</th>
+            <td>{{ reservation.prenom }}</td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td>{{ reservation.email }}</td>
+        </tr>
+
+        <tr>
+            <th>Titre du livre</th>
+            <td>{{ reservation.titre }}</td>
+        </tr>
+
+        <tr>
+            <th>Auteur</th>
+            <td>{{ reservation.auteur }}</td>
+        </tr>
+
+        <tr>
+            <th>Date de réservation</th>
+            <td>{{ reservation.date_reservation }}</td>
+        </tr>
+
+        <tr>
+            <th>Statut</th>
+            <td>{{ reservation.statut }}</td>
+        </tr>
+
+    </table>
+     <select onchange="if (this.value) window.location.href=this.value;">
+    <option value=""> action</option>
+
+    <option value="{{ url_for('accepter_reservation', id=reservation.id) }}">
+        Accepte
+    </option>
+
+    <option value="{{ url_for('refuser_reservation', id=reservation.id) }}">
+        Refuse
+    </option>
+         <option value="{{ url_for('livre_retourne', id=reservation.id) }}">
+        retourne
+    </option>
+</select>
+    <br>
+    <a href="{{ url_for('reservations') }}">
+        <button>Retour</button>
+    </a>
+
+</body>
+{% include 'admin/footer.html' %}
+

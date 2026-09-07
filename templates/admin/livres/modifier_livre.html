@@ -1,0 +1,72 @@
+{% include 'admin/header.html' %}
+<body>
+    <h2>Modifier un livre</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label>Titre :</label><br>
+        <input type="text" name="titre" value="{{ livre.titre }}" required><br><br>
+
+        <label>Auteur :</label><br>
+        <input type="text" name="auteur" value="{{ livre.auteur }}" required><br><br>
+
+        <label>Image :</label><br>
+        <input type="file" name="image"><br><br>
+
+        {% if livre.image %}
+            <img src="{{ url_for('static', filename='images/' + livre.image) }}"
+                 width="120">
+            <br><br>
+        {% endif %}
+
+        <label>ISBN :</label><br>
+        <input type="text" name="ISBN" value="{{ livre.isbn }}" required><br><br>
+
+        <label>Nombre de pages :</label><br>
+        <input type="number" name="nombre_de_pages" value="{{ livre.nombre_de_pages }}" required><br><br>
+
+        <label>Langue :</label><br>
+        <input type="text" name="langue" value="{{ livre.langue }}" required><br><br>
+
+        <label>Année de publication :</label><br>
+        <input type="number" name="annee_publication" value="{{ livre.annee_publication }}" required><br><br>
+
+        <label>Quantité :</label><br>
+        <input type="number" name="quantite" value="{{ livre.quantite }}" required><br><br>
+        <select name="categorie" id="categorie">
+
+    {% for categorie in categories %}
+
+        <option
+            value="{{ categorie['id'] }}"
+            {% if categorie['id'] == livre['categorie_id'] %}
+                selected
+            {% endif %}
+        >
+            {{ categorie['nom'] }}
+        </option>
+
+    {% endfor %}
+
+</select>
+     <select name="statut">
+
+        <option>
+
+
+        </option>
+
+</select>
+        <br><br>
+        <label>Description :</label><br>
+        <textarea name="description" rows="5" cols="40">{{ livre.description }}</textarea><br><br>
+
+     <a href="{{ url_for('livres', id=livre.id) }}">
+            <button type="submit">enregistrer</button>
+        </a>
+
+    </form>
+
+
+</body>
+{% include 'admin/footer.html' %}

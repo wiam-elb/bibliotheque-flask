@@ -1,0 +1,25 @@
+{% include 'user/header.html' %}
+<body>
+<p>Bienvenue, {{ g.user['nom'] }} {{ g.user['prenom'] }}</p>
+
+<div>
+    <h2>Réservations en attente</h2>
+    <p>{{ total_en_attente }}</p>
+</div>
+
+<div>
+    <h2>Réservations refusées</h2>
+    <p>{{ total_refusees }}</p>
+</div>
+
+<div>
+    <h2>Réservations acceptées</h2>
+    <p>{{ total_acceptees }}</p>
+</div>
+    <blockquote>
+        "La lecture est une porte ouverte sur un monde enchanté."
+    </blockquote>
+
+</body>
+
+{% include 'user/footer.html' %}

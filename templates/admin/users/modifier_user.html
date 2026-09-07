@@ -1,0 +1,47 @@
+{% include 'admin/header.html' %}
+<body>
+
+<h2>Modifier un utilisateur</h2>
+
+<form method="POST">
+
+    <label>Nom :</label><br>
+    <input type="text" name="nom" value="{{ user.nom }}" required>
+    <br><br>
+
+    <label>Prénom :</label><br>
+    <input type="text" name="prenom" value="{{ user.prenom }}" required>
+    <br><br>
+
+    <label>Email :</label><br>
+    <input type="email" name="email" value="{{ user.email }}" required>
+    <br><br>
+
+    <label>Type d'utilisateur :</label><br>
+    <select name="usertype">
+        <option value="admin"
+            {% if user.usertype == 'admin' %}selected{% endif %}>
+            Admin
+        </option>
+
+        <option value="etudiant"
+            {% if user.usertype == 'etudiant' %}selected{% endif %}>
+            Étudiant
+        </option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Enregistrer</button>
+
+    <a href="{{ url_for('users') }}">
+        <button type="button">Annuler</button>
+    </a>
+
+</form>
+
+</body>
+
+
+
+{% include 'admin/footer.html' %}

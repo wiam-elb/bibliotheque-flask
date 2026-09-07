@@ -1,0 +1,82 @@
+{% include 'user/header.html' %}
+<body>
+
+    <h1>Catalogue des Livres</h1>
+
+    <hr>
+
+    <form method="get" action="{{ url_for('catalogue') }}">
+        <input type="text"
+               name="recherche"
+               placeholder="Rechercher un livre">
+        <select name="categories">
+            <option value="">Toutes les catégories</option>
+            <option value="action">Action</option>
+            <option value="roman">Roman</option>
+             <option value="drama">Drama</option>
+        </select>
+        <button type="submit">Rechercher</button>
+    </form>
+    <br>
+    <table>
+        <tr>
+
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Catégorie</th>
+            <th>Disponibilité</th>
+            <th>Action</th>
+
+        </tr>
+
+        {% for livre in livres %}
+        <tr>
+            <td>{{ livre.id }}</td>
+            <td>{{ livre.titre }}</td>
+            <td>{{ livre.auteur }}</td>
+            <td>{{ livre.nom_categorie }}</td>
+            <td>
+
+                {% if livre.quantite >= 1 %}
+
+                    Disponible
+
+                {% else %}
+
+                    Indisponible
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                {% if livre.quantite >= 1 %}
+
+                <form action="{{ url_for('reserver_livre', id=livre.id) }}" method="POST">
+
+                    <button type="submit">
+                        Réserver
+                    </button>
+
+                </form>
+
+                {% else %}
+
+                  <button type="submit" disabled>
+                        Réserver
+                    </button>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+{% include 'user/footer.html' %}

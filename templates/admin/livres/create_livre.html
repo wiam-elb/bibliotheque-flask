@@ -1,0 +1,91 @@
+{% include 'admin/header.html' %}
+<form action="/admin/livres/create_livre" method="post" enctype="multipart/form-data">
+  <div class="row mb-3">
+    <label for="inputTitre3" class="col-sm-2 col-form-label">titre</label>
+    <div class="col-sm-10">
+      <input type="text" name="titre" class="form-control" id="inputTitre3">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputAuteur3" class="col-sm-2 col-form-label">Auteur</label>
+    <div class="col-sm-10">
+      <input type="text" name="auteur" class="form-control" id="inputAuteur3">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputimage3" class="col-sm-2 col-form-label">image</label>
+    <div class="col-sm-10">
+      <input type="file" name="image" value="" class="form-control" id="inputimage3">
+    </div>
+  </div>
+   <div class="row mb-3">
+    <label for="inputISBN3" class="col-sm-2 col-form-label">ISBN</label>
+    <div class="col-sm-10">
+      <input type="number" name="ISBN" class="form-control" id="inputISBN3">
+    </div>
+   </div>
+   <div class="row mb-3">
+    <label for="inputNombre_De_Pages3" class="col-sm-2 col-form-label">Nombre de page </label>
+    <div class="col-sm-10">
+      <input type="number" name="nombre_de_pages" class="form-control" id="inputNombreDePge">
+    </div>
+  </div>
+   <div class="row mb-3">
+    <label for="inputLangue3" class="col-sm-2 col-form-label">langue</label>
+    <div class="col-sm-10">
+        <select name="langue">
+            <option value="fr">fr</option>
+            <option value="ar">ar</option>
+            <option value="en">en</option>
+        </select>
+    </div>
+  </div>
+   <div class="row mb-3">
+    <label for="inputAnneeDePublication3" class="col-sm-2 col-form-label">Annee de publication</label>
+    <div class="col-sm-10">
+      <input type="number" name="annee_publication" class="form-control" id="inputAnneedepublication3">
+    </div>
+  </div>
+   <div class="row mb-3">
+    <label for="inputQuantite3" class="col-sm-2 col-form-label">Quantite</label>
+    <div class="col-sm-10">
+      <input type="number" name="quantite" class="form-control" id="inputquantite">
+    </div>
+  </div>
+    <div class="row mb-3">
+    <label for="inputdescription" class="col-sm-2 col-form-label">description </label>
+    <div class="col-sm-10">
+        <textarea name="description" class="form-control" id="inputdescription"></textarea>
+    </div>
+  </div>
+    <div class="row mb-3">
+    <label for="inputcategorie3" class="col-sm-2 col-form-label">
+        Catégorie
+    </label>
+
+    <div class="col-sm-10">
+        <select name="categorie" id="inputcategorie3" class="form-select">
+
+            <option value="">Choisir une catégorie</option>
+
+            {% for categorie in categories %}
+                <option value="{{ categorie.id }}">
+                    {{ categorie.nom }}
+                </option>
+            {% endfor %}
+
+        </select>
+    </div>
+</div>
+     <div class="row mb-3">
+    <label for="inputpubliee3" class="col-sm-2 col-form-label">statut</label>
+    <div class="col-sm-10">
+        <select name="publiee">
+            <option value="0">actif</option>
+            <option value="1">inactif</option>
+        </select>
+    </div>
+  </div>
+<button type="submit">Ajouter</button></form>
+
+{% include 'admin/footer.html' %}

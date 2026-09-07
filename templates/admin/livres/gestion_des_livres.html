@@ -1,0 +1,63 @@
+{% include 'admin/header.html' %}
+<form method="GET" action="{{ url_for('livres') }}" class="mb-3">
+    <input type="text" name="search" placeholder="Rechercher par ID ou titre..."
+           value="{{ request.args.get('search', '') }}">
+    <button type="submit">Rechercher</button>
+</form>
+
+<li><a href="{{ url_for('create_livre') }}">ajouter un livre</a></li>
+
+<table>
+     <thead>
+    <tr>
+      <th>id</th>
+      <th>titre</th>
+      <th>auteur</th>
+      <th>langue</th>
+      <th>annee_publication</th>
+      <th>quantite</th>
+      <th>categorie</th>
+      <th>created at</th>
+      <th>action</th>
+      <th>statut</th>
+    </tr>
+  </thead>
+    {% for livre in livres %}
+    <tr>
+      <td>{{ livre['id'] }}</td>
+      <td>{{ livre['titre'] }}</td>
+      <td>{{ livre['auteur'] }}</td>
+      <td>{{ livre['langue'] }}</td>
+      <td>{{ livre['annee_publication'] }}</td>
+      <td>{{ livre['quantite']}}</td>
+        <td>{{ livre['categorie_nom'] }}</td>
+      <td>{{ livre['created_at'] }}</td>
+        <td>
+              <a href="{{ url_for('modifier_livre', id=livre.id) }}">
+            <button>Modifier</button>
+        </a>
+
+        <a href="{{ url_for('supprimer_livre', id=livre.id) }}"
+           onclick="return confirm('Voulez-vous supprimer ce livre ?')">
+            <button>Supprimer</button>
+        </a>
+        </td>
+      <td>
+
+                {% if livre.publiee == 1 %}
+
+                    actif
+
+                {% else %}
+
+                    Inactif
+
+                {% endif %}
+
+            </td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+{% include 'admin/footer.html' %}

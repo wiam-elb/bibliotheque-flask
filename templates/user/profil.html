@@ -1,0 +1,97 @@
+{% include 'user/header.html' %}
+<body>
+
+    <h1>Mon Profil</h1>
+
+    <h2>Mes informations</h2>
+
+    <form method="POST">
+
+        <label>Nom :</label>
+        <input
+            type="text"
+            name="nom"
+            value="{{ g.user['nom'] }}"
+            required
+        >
+
+        <br><br>
+
+        <label>Prénom :</label>
+        <input
+            type="text"
+            name="prenom"
+            value="{{ g.user['prenom'] }}"
+            required
+        >
+
+        <br><br>
+
+        <label>Gmail :</label>
+        <input
+            type="email"
+            name="email"
+            value="{{ g.user['email'] }}"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit" name="action" value="infos">
+            Enregistrer les modifications
+        </button>
+
+    </form>
+
+
+    <hr>
+
+    <details>
+
+        <summary>Modifier le mot de passe</summary>
+
+        <br>
+
+        <form method="POST">
+
+            <label>Ancien mot de passe :</label>
+            <input
+                type="password"
+                name="ancien_password"
+                required
+            >
+
+            <br><br>
+
+            <label>Nouveau mot de passe :</label>
+            <input
+                type="password"
+                name="nouveau_password"
+                required
+            >
+
+            <br><br>
+
+            <label>Confirmer le nouveau mot de passe :</label>
+            <input
+                type="password"
+                name="confirmer_password"
+                required
+            >
+
+            <br><br>
+
+            <button type="submit" name="action" value="password">
+                Modifier le mot de passe
+            </button>
+
+        </form>
+
+    </details>
+
+</body>
+
+{% include 'user/footer.html' %}
+
+
+

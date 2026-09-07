@@ -1,0 +1,46 @@
+{% include 'user/header.html' %}
+
+<body>
+
+<h1>Mes Réservations</h1>
+
+{% if reservations %}
+
+<table border="1">
+
+    <tr>
+        <th>id</th>
+        <th>Titre</th>
+        <th>Catégorie</th>
+        <th>Date de réservation</th>
+        <th>statut</th>
+        <th>recu</th>
+    </tr>
+    {% for reservation in reservations %}
+    <tr>
+        <td>{{ reservation["id"] }}</td>
+        <td>{{ reservation["livre_titre"] }}</td>
+        <td>{{ reservation["livre_categorie"] }}</td>
+        <td>{{ reservation["date_reservation"] }}</td>
+        <td>{{ reservation['statut'] }}</td>
+
+        <td>
+    <a href="{{ url_for('telecharger_recu', id=reservation.id) }}">
+        Télécharger le reçu
+    </a>
+</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% else %}
+
+<p>Aucune réservation trouvée.</p>
+
+{% endif %}
+
+</body>
+
+{% include 'user/footer.html' %}

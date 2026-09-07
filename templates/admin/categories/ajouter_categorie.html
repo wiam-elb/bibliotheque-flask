@@ -1,0 +1,28 @@
+{% include 'admin/header.html' %}
+<body>
+
+    <h2>Ajouter une catégorie</h2>
+
+    <form action="{{ url_for('ajouter_categorie') }}" method="POST">
+
+        <div>
+            <label>Nom de la catégorie :</label><br>
+            <input
+                type="text"
+                name="nom"
+                placeholder="Entrer le nom de la catégorie"
+                required>
+        </div>
+
+        <br>
+
+        <button type="submit">Ajouter</button>
+
+        <a href="{{ url_for('categories') }}">
+            <button type="button">Annuler</button>
+        </a>
+
+    </form>
+
+</body>
+{% include 'admin/footer.html' %}

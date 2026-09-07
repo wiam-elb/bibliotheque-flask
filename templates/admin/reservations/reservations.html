@@ -1,0 +1,93 @@
+{% include 'admin/header.html' %}
+<body>
+
+    <h1>Gestion des Réservations</h1>
+
+  <form method="GET" action="{{ url_for('reservations') }}">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Rechercher par ID, livre ID ou user ID..."
+        value="{{ request.args.get('search', '') }}"
+    >
+
+    <select name="statut">
+        <option value="">Tous</option>
+        <option value="En attente">En attente</option>
+        <option value="Accepte">Accepte</option>
+        <option value="Refuse">Refuse</option>
+        <option value="retourné">retourné</option>
+    </select>
+
+    <button type="submit">Rechercher</button>
+
+</form>
+
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>Livre</th>
+                <th>Date réservation</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for reservation in reservations  %}
+
+        <tr>
+
+            <td>{{ reservation['id'] }}</td>
+
+            <td>{{ reservation['user_nom'] }}</td>
+            
+            <td>{{ reservation['user_prenom'] }}</td>
+
+            <td>{{ reservation['livre_id']  }}</td>
+
+            <td>{{ reservation['date_reservation']  }}</td>
+
+            <td>{{ reservation['statut']  }}</td>
+
+            <td>
+
+                {% if reservation['statut']   == "En attente" %}
+
+                <a href="{{ url_for('accepter_reservation', id=reservation['id']) }}">
+                    <button>Accepter</button>
+                </a>
+                <a href="{{ url_for('refuser_reservation', id=reservation['id']) }}">
+                    <button>Refuser</button>
+                {% endif %}
+
+                <a href="{{ url_for('detail_reservation', id=reservation['id']) }}">
+                    <button>Détails</button>
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% else %}
+
+        <tr>
+            <td colspan="6">
+                Aucune réservation trouvée.
+            </td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</body>
+{% include 'admin/footer.html' %}

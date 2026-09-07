@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary">
+  <ul>
+      {% if not g.user %}
+          <li><a href="{{ url_for('index') }} ">Home</a></li>
+          <li><a href="{{ url_for('login') }}">login</a></li>
+          <li><a href="{{ url_for('register') }}">register</a></li>
+      {% endif %}
+
+      {% if g.user %}
+          <li><a href="{{ url_for('dashboard') }}">dashboard</a></li>
+          <li><a href="{{ url_for('profil') }}"> profil</a></li>
+          <li><a href="{{ url_for('historique_reservations') }}"> historiques reservations</a></li>
+          <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
+          <li><a href="{{ url_for('contact') }}">contact</a></li>
+          <li><a href="{{ url_for('apropos') }}">apropos</a></li>
+          <li><a href="{{ url_for('logout') }}">logout</a></li>
+      {% endif %}
+  </ul>
+</nav>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}

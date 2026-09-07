@@ -1,0 +1,37 @@
+{% include 'admin/header.html' %}
+
+<body>
+
+    <h1>Liste des catégories</h1>
+       <a href="{{ url_for('ajouter_categorie') }}">
+    <button>Ajouter catégorie</button>
+    </a>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>Nom de la catégorie</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for categorie in categories %}
+
+        <tr>
+            <td>{{ categorie.id }}</td>
+            <td>{{ categorie.nom }}</td>
+            <td>
+               <a href="{{ url_for('supprimer_categorie', id=categorie.id) }}"
+           onclick="return confirm('Voulez-vous supprimer cette categorie?')">
+            <button>Supprimer</button>
+        </a>
+
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+{% include 'admin/footer.html' %}
