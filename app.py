@@ -28,7 +28,7 @@ app.config['MAIL_PASSWORD'] = 'TON_MOT_DE_PASSE_APPLICATION'
 app.config['MAIL_DEFAULT_SENDER'] = 'wiamelbadaoui97@gmail.com'
 mail = Mail(app)
 
-app.secret_key = 'wiam07'
+app.secret_key = 'XXXXXX'
 bcrypt = Bcrypt(app)
 
 app.config['DEVELOPMENT'] = True
@@ -36,7 +36,7 @@ app.config['DEBUG'] = True
 
 app.config['MYSQL_HOST'] = '127.0.0.1'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'wiam2007'
+app.config['MYSQL_PASSWORD'] = 'XXXXXXXX'
 app.config['MYSQL_DB'] = 'biblio'
 
 mysql = MySQL(app)
